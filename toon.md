@@ -1,11 +1,11 @@
-# Exploring TOON: An Experimental Approach to Token Optimization
 
+# Exploring TOON: An experimental approach to Token Optimization
  token-efficient data formats for LLMs.
 
 
-## The Token Efficiency Problem 
+## The Token efficiency problem 
 
-### Why Token Efficiency Matters
+### Why token efficiency matters
 
 Every token you send to an LLM costs money. Modern LLM pricing (input tokens):
 - Claude Sonnet 4: $3 per 1M tokens
@@ -23,7 +23,7 @@ Every token you send to an LLM costs money. Modern LLM pricing (input tokens):
 Token optimization can meaningfully reduce costs at scale.
 
 
-### The JSON Problem
+### The JSON problem
 
 ```json
 {
@@ -43,7 +43,7 @@ Token optimization can meaningfully reduce costs at scale.
 
 ##  How TOON Works 
 
-### TOON's Core Idea
+### TOON's Core idea
 
 **Declare schema once, stream values only**
 
@@ -58,7 +58,7 @@ users[3]{id,name,role}:
 
 **Key innovation:** Combines YAML's indentation with CSV's tabular efficiency
 
-### Three Array Formats
+### Three array formats
 
 | Data Shape | TOON Format | Example |
 |------------|-------------|---------|
@@ -67,9 +67,9 @@ users[3]{id,name,role}:
 | **Mixed/nested** | List | `items[2]:` + `- item` lines |
 
 **Decision logic:**
-- All elements primitives? → Inline
-- All objects, same fields, primitive values? → Tabular *(this is where big savings happen)*
-- Everything else? → List (YAML-style)
+- All elements primitives? -> Inline
+- All objects, same fields, primitive values? -> Tabular *(this is where big savings happen)*
+- Everything else? -> List (YAML-style)
 
 ### Real Benchmark - Token Savings
 
@@ -97,7 +97,7 @@ Or install locally:
 npm install @toon-format/toon
 
 # Python (beta, from GitHub)
-git clone https://github.com/toon-format/toon-python.git
+pip install git+https://github.com/toon-format/toon-python.git
 ```
 
 
@@ -227,18 +227,18 @@ ORD-001,Alice,259.99,shipped
 START HERE
 │
 ├─ Do you send large uniform arrays to LLMs?
-│  └─ NO → Stick with minified JSON
+│  └─ NO -> Stick with minified JSON
 │
 ├─ Are you operating at scale (>10K calls/day)?
-│  └─ NO → Token savings won't justify complexity
+│  └─ NO -> Token savings won't justify complexity
 │
 ├─ Can you benchmark with your specific model?
-│  └─ NO → Don't risk accuracy issues
+│  └─ NO -> Don't risk accuracy issues
 │
 ├─ Did your benchmarks show good accuracy?
-│  └─ NO → Use minified JSON instead
+│  └─ NO -> Use minified JSON instead
 │
-└─ YES to all above → Consider TOON
+└─ YES to all above -> Consider TOON
    (But monitor accuracy in production)
 ```
 
@@ -254,8 +254,8 @@ START HERE
 - Use production-like data
 
 **Rule 3: Understand the tradeoffs**
-- Token prices are dropping ($30/1M → $3/1M in 18 months)
-- Context windows are growing (4K → 200K+)
+- Token prices are dropping ($30/1M -> $3/1M in 18 months)
+- Context windows are growing (4K -> 200K+)
 - The problem TOON solves is becoming less critical
 - Weigh token savings against implementation complexity
 
